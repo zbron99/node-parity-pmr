@@ -70,7 +70,7 @@ function parseOrderEntered(buffer) {
     username: readString(buffer, 9, 8),
     orderNumber: readUInt64BE(buffer, 17),
     side: parseOrderSide(readString(buffer, 25, 1)),
-    instrument: trim(readString(buffer, 26, 8)),
+    instrument: readString(buffer, 26, 8).trim(),
     quantity: parseOrderQuantity(readUInt64BE(buffer, 34)),
     price: parseOrderPrice(readUInt64BE(buffer, 42)),
   };
