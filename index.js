@@ -15,7 +15,10 @@
  */
 'use strict';
 
-const BN = require('bignumber.js');
+const BigNumber = require('bignumber.js');
+BigNumber.config({
+  EXPONENTIAL_AT: 9
+});
 
 const MessageType = {
   VERSION: 'V',
@@ -113,11 +116,11 @@ function parseOrderSide(side) {
 }
 
 function parseOrderQuantity(quantity) {
-  return new BN(quantity).dividedBy(Factor.SIZE).toString();
+  return new BigNumber(quantity).dividedBy(Factor.SIZE).toString();
 }
 
 function parseOrderPrice(price) {
-  return new BN(price).dividedBy(Factor.PRICE).toString();
+  return new BigNumber(price).dividedBy(Factor.PRICE).toString();
 }
 
 function readUInt64BE(buffer, offset) {
